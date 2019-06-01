@@ -4,15 +4,8 @@ const validator = require('validator'),
       getNotes  = require('./getNotes');
 
 const msg = getNotes();
+let input = process.argv.slice(2);
 
-log("========================================");
-
-// log out number from the msg 
-// event numbers should be green and odd number should be red
-
-msg.forEach((number) => {
-    if(number % 2){
-        log(chalk.red.bgWhite(`\nThe number ${number} is ODD`));
-    }
-    log(chalk.green.bgRedBright(`\nThe number ${number} is EVEN`));
+input.forEach((input) => {
+    log(input)
 })
