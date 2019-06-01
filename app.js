@@ -4,8 +4,15 @@ const validator = require('validator'),
       getNotes  = require('./getNotes');
 
 const msg = getNotes();
-const name = 'Nick'
 
-log(chalk.red('you have a unread message'))
-log(chalk.blue('you just received a message'))
+log("========================================");
 
+// log out number from the msg 
+// event numbers should be green and odd number should be red
+
+msg.forEach((number) => {
+    if(number % 2){
+        log(chalk.red.bgWhite(`\nThe number ${number} is ODD`));
+    }
+    log(chalk.green.bgRedBright(`\nThe number ${number} is EVEN`));
+})

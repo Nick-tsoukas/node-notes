@@ -1,5 +1,10 @@
+let numbers  = [];
+
 getNotes = function(){
-    return 'This will eventually return some notes';
+    for(let i =0; i<= 10; i++){
+        numbers.push(i);
+    }
+    return numbers;
 }
 
 module.exports = getNotes;
