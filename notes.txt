@@ -1,4 +1,2 @@
 Lets see what happens when we write to the file again
-this is note 1 
-this is note 3
-this is note 2
+ This should appear at the end of the file =1=1=1=1=1=1
