@@ -1,11 +1,58 @@
-const validator = require('validator'),
-      chalk     = require('chalk'),
-      log       = console.log,
-      getNotes  = require('./getNotes');
+// specs add remove read list notes 
 
-const msg = getNotes();
-let input = process.argv.slice(2);
+const chalk    = require('chalk'),
+      yargs    = require('yargs'),
+      getNotes = require('./getNotes.js'),
+      log      = console.log;
 
-input.forEach((input) => {
-    log(input)
+yargs.version('1.1.0');
+
+yargs.command({
+    command: 'add',
+    describe: "Add a new note",
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: "Note body",
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv){
+        const title = argv.title;
+        const body = argv.body;
+        log(chalk.red.bold(title));
+        log(chalk.green(title));
+    }
 })
+
+yargs.command({
+    command: 'remove',
+    describe: "Removing a note",
+    handler: function(){
+        log('Remove a note ,,,,, ')
+    }
+});
+
+yargs.command({
+    command: 'list',
+    describe: 'Lists all the notes',
+    handler: () => {
+        log('this will list all the notes from the database')
+    }
+});
+
+yargs.command({
+    command: 'read',
+    describe: 'Reads one of your notes from the database',
+    handler: () => {
+        log(chalk.bold('this is the note that you requested'))
+    }
+})
+
+
+yargs.parse()
