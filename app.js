@@ -1,12 +1,10 @@
-// specs add remove read list notes 
-
-
 const chalk = require('chalk'),
-    fetch = require('node-fetch'),
     yargs = require('yargs'),
-    getNotes = require('./getNotes.js'),
+    notes = require('./notes.js'),
     log = console.log;
 
+
+//  defines 
 yargs.version('1.1.0');
 
 yargs.command({
@@ -26,12 +24,7 @@ yargs.command({
     },
     handler: function (argv) {
         const { title,  body }  = argv
-        log(chalk.bold.red('\n', title, '\n'), '==================\n', chalk.bold.green(body, '\n'));
-    //    const title = argv.title;
-    //    const body = argv.body;
-    //    log(chalk.bold(title));
-    //    log("===============");
-    //    log(chalk.green(body));
+        notes.addNote(title,body);
     }
 })
 
