@@ -1,21 +1,19 @@
 const chalk = require('chalk'),
     yargs = require('yargs'),
     notes = require('./notes.js'),
+    titleBuilderYargs = {describe: "note title", demandOption: true, type:'string'},
     log = console.log;
 
 
 //  defines 
 yargs.version('1.1.0');
 
+// Adds a note
 yargs.command({
     command: 'add',
     describe: "Add a new note",
     builder: {
-        title: {
-            describe: 'Note title',
-            demandOption: true,
-            type: 'string'
-        },
+        title: titleBuilderYargs,
         body: {
             describe: "Note body",
             demandOption: true,
@@ -28,11 +26,17 @@ yargs.command({
     }
 })
 
+// removes a note 
 yargs.command({
     command: 'remove',
     describe: "Removing a note",
-    handler: function () {
-        log('Remove a note ,,,,, ')
+    builder: {
+        title: titleBuilderYargs
+    },
+    handler: function (argv) {
+        const { title } = argv;
+        // try and get the index of the note
+        notes.removeNote(title);
     }
 });
 
