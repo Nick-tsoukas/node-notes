@@ -6,6 +6,7 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
    const notes = loadNotes();
+   checkDuplicateNotes(notes,title);
 
    notes.push({
        title: title,
@@ -33,9 +34,19 @@ const loadNotes = () => {
     }
 }
 
+const checkDuplicateNotes = (notes,title) => {
+    const hasNote = notes.filter((n) => {
+        return n.title == title;
+    })
+    if(!hasNote.length >= 0){
+         console.log('this note already exists');
+    }
+}
+
 
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    checkDuplicateNotes: checkDuplicateNotes
 }
