@@ -1,4 +1,6 @@
 const fs = require('fs');
+const chalk = require('chalk')
+const log = console.log;
 
 const getNotes = () => {
     return 'your notes';
@@ -6,14 +8,23 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
    const notes = loadNotes();
-   checkDuplicateNotes(notes,title);
-
-   notes.push({
-       title: title,
-       body: body
+   // check if note already exists 
+   let duplicateNote = notes.filter((n) => {
+      return n.title === title;
    });
 
-   saveNotes(notes);
+   if(duplicateNote.length == 0 ){
+       notes.push({
+           title: title,
+           body: body
+       });
+       log(chalk.green.bold('Saving your note'));
+       saveNotes(notes);
+
+   } else {
+    log('this note already exists ')
+   }
+
 
 }
 
@@ -34,19 +45,9 @@ const loadNotes = () => {
     }
 }
 
-const checkDuplicateNotes = (notes,title) => {
-    const hasNote = notes.filter((n) => {
-        return n.title == title;
-    })
-    if(!hasNote.length >= 0){
-         console.log('this note already exists');
-    }
-}
-
 
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote,
-    checkDuplicateNotes: checkDuplicateNotes
+    addNote: addNote
 }
