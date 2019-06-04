@@ -20,7 +20,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         const { title,  body }  = argv;
         notes.addNote(title,body);
     }
@@ -33,9 +33,8 @@ yargs.command({
     builder: {
         title: titleBuilderYargs
     },
-    handler: function (argv) {
+    handler(argv) {
         const { title } = argv;
-        // try and get the index of the note
         notes.removeNote(title);
     }
 });
@@ -43,15 +42,15 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Lists all the notes',
-    handler: () => {
-        log('this will list all the notes from the database')
+    handler() {
+       notes.listNotes();
     }
 });
 
 yargs.command({
     command: 'read',
     describe: 'Reads one of your notes from the database',
-    handler: () => {
+    handler() {
         log(chalk.bold('this is the note that you requested'))
     }
 })

@@ -1,24 +1,29 @@
 const fs = require('fs');
 const chalk = require('chalk');
 const log = console.log;
+// const notes = loadNotes();
 
 
 const getNotes = () => {
     return 'your notes';
 }
 
+const listNotes = () => {
+    const notes = loadNotes()
+    log(chalk.green.bold('===============\n Loading notes\n==============='))
+    notes.forEach((n,index) => {
+        console.log(`${index + 1}. ${n.title}`);
+    })
+}
+
 const addNote = (title, body) => {
     const notes = loadNotes();
-    const note = {
-        title: title,
-        body: body
-    };
-    // check if note already exists 
+    const note = {title: title, body: body};
     let checkNote = duplicateNote(notes, title);
-    if (!checkNote.length) {
+    if (checkNote.length === 0) {
         notes.push(note);
         log(chalk.green.bold('Saving your note'));
-        saveNotes(notes);
+       return  saveNotes(notes);
     } else log(chalk.red.bold('This note already exists'));
 }
 
@@ -30,6 +35,7 @@ const saveNotes = (notes) => {
 const removeNote = (title) => {
     const notes = loadNotes();
     let removed = false;
+//  Imperative solution 
     notes.forEach((note, index) => {
         if (note.title === title) {
             console.log(note)
@@ -38,7 +44,7 @@ const removeNote = (title) => {
             notes.splice(index, 1);
             removed = true;
             saveNotes(notes);
-            return log(chalk.green.bold('Successfully removed note'))
+            return log(chalk.green.bold('Successfully removed note'));
         }
     });
     if(removed === false){
@@ -47,13 +53,20 @@ const removeNote = (title) => {
 }
 
 
-
 const loadNotes = () => {
     try {
         return createJsonFromFile();
     } catch (err) {
         return [];
     }
+}
+
+
+module.exports = {
+    getNotes: getNotes,
+    addNote: addNote,
+    removeNote: removeNote,
+    listNotes: listNotes
 }
 
 
@@ -69,10 +82,4 @@ function duplicateNote(notes, title) {
         return n.title === title;
     });
     return check;
-}
-
-module.exports = {
-    getNotes: getNotes,
-    addNote: addNote,
-    removeNote: removeNote
 }
