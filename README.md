@@ -1,6 +1,6 @@
 # node-notes
 
-Node-notes is a command line tool that allows you to create notes from the terminal and logs them to the console. A note will contain a title and body. When adding a note for the first time, the program creates a notes.json file in the current working directory where it will store all the notes.
+Node-notes is a command line tool that allows you to create and log notes to the terminal. A note must contain a title and a body. When adding a note for the first time, the program creates a notes.json file in the current working directory where it will store all the notes.
 
 It's a really simple command line utility that can ... 
 
