@@ -2,6 +2,20 @@
 
 Node-notes is a command line tool that allows you to create and log notes to the terminal. A note must contain a title and a body. When adding a note for the first time, the program creates a notes.json file in the current working directory where it will store all the notes.
 
+To install fist clone the repo and then run
+
+- Local installation
+
+```javascript
+npm install
+```
+
+- Global installation
+
+```javascript
+npm -g install
+```
+
 It's a really simple command line utility that can ...
 
 - Create a note ...
