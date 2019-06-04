@@ -7,13 +7,13 @@ To install fist clone the repo and then run
 - Local installation
 
 ```javascript
-npm install
+npm install 
 ```
 
 - Global installation
 
 ```javascript
-npm -g install
+npm install -g
 ```
 
 It's a really simple command line utility that can ...
