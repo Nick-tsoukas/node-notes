@@ -20,6 +20,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bin": {
+    "note": "./app.js"
+  },
   "bugs": {
     "url": "https://github.com/Nick-tsoukas/node-notes/issues"
   },

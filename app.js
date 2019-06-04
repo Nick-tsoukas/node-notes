@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const chalk = require('chalk'),
     yargs = require('yargs'),
     notes = require('./notes.js'),
@@ -11,6 +13,7 @@ yargs.version('1.1.0');
 // Adds a note
 yargs.command({
     command: 'add',
+    aliases: ['add', 'a'],
     describe: "Add a new note",
     builder: {
         title: titleBuilderYargs,
@@ -29,6 +32,7 @@ yargs.command({
 // removes a note 
 yargs.command({
     command: 'remove',
+    aliases: ['remove', 'r'],
     describe: "Removing a note",
     builder: {
         title: titleBuilderYargs
@@ -41,6 +45,7 @@ yargs.command({
 
 yargs.command({
     command: 'list',
+    aliases: ['list', '-l'],
     describe: 'Lists all the notes',
     handler() {
        notes.listNotes();
@@ -49,9 +54,10 @@ yargs.command({
 
 yargs.command({
     command: 'read',
-    describe: 'Reads one of your notes from the database',
-    handler() {
-        log(chalk.bold('this is the note that you requested'))
+    aliases: ['read', 'r'],
+    handler(argv) {
+        const { title } = argv;
+        notes.readNote(title);
     }
 })
 

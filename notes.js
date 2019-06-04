@@ -3,11 +3,6 @@ const chalk = require('chalk');
 const log = console.log;
 // const notes = loadNotes();
 
-
-const getNotes = () => {
-    return 'your notes';
-}
-
 const listNotes = () => {
     const notes = loadNotes()
     log(chalk.green.bold('===============\n Loading notes\n==============='))
@@ -17,10 +12,13 @@ const listNotes = () => {
 }
 
 const addNote = (title, body) => {
+    title = title.trim();
     const notes = loadNotes();
     const note = {title: title, body: body};
+    // a better way to do this is notes.find((note) => note.title === title);
     let checkNote = duplicateNote(notes, title);
-    if (checkNote.length === 0) {
+    if (!checkNote.length) {
+        
         notes.push(note);
         log(chalk.green.bold('Saving your note'));
        return  saveNotes(notes);
@@ -52,6 +50,14 @@ const removeNote = (title) => {
     }
 }
 
+const readNote = (title) => {
+    notes = loadNotes();
+    const note = notes.find((note) => note.title === title);
+    if(!note) return log(chalk.red.bold("Could not find the note ... please try again"));
+     log(chalk.green.bold('Awesome! We found a note!!!'));
+     log(chalk.green(JSON.stringify(note)))
+}
+
 
 const loadNotes = () => {
     try {
@@ -63,10 +69,10 @@ const loadNotes = () => {
 
 
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNote: readNote
 }
 
 
