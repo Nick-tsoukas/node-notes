@@ -21,4 +21,4 @@ note list
 note remove --title="The title of the note you want to remove"
 ```
 
-![notes-node-in-action](https://firebasestorage.googleapis.com/v0/b/client-management-111c5.appspot.com/o/note-app.png?alt=media&token=fcebbf73-0626-47fb-9e7b-df981c1da942)
+![notes-node-in-action](https://firebasestorage.googleapis.com/v0/b/client-management-111c5.appspot.com/o/note-app.png?alt=media&token=e2f7a947-33bb-4422-a31d-1e449f758c61)
